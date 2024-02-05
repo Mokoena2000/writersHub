@@ -15,7 +15,18 @@ def index(request):
 
 @login_required(login_url='signin')
 def upload(request):
-    return HttpResponse('<h1>Upload View</h1>')
+    if request.method == "POST":
+        user = request.user.username
+        image = request.files.get('image_upload')
+        caption = request.POST('caption')
+        
+        new_post = Post.objects.create(user=user,image=image, caption=caption)
+        new_post.save()
+        
+        return redirect('/')
+        
+    else:
+        return redirext('/')
 
 @login_required(login_url='signin')
 def settings(request):
