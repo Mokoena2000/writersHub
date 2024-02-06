@@ -8,9 +8,9 @@ from .models import Profile, Post, LikePost
 # Create your views here.
 
 @login_required(login_url='signin')
-def index(request):
+def index(request, pk):
     user_object = User.objects.get(username=request.user.username)
-    user_profile = Profile.objects.get(user=user_object)
+    user_profile = Profile.objects.get(user=user_objects)
     
     post = post.object.all()
     return render(request, 'index.html', {'user_profile': user_profile, 'posts': posts})
@@ -50,7 +50,21 @@ def like_post(request):
         post.no_of_likes = post.no_of_likes-1
         post.save()
         return redirect('/')
-        
+    
+@login_required(login_url='signin')    
+def profile(request, pk):
+    user_object = User.objects.get(username=pk)
+    user_profile = Profile.objects.get(user=user_object)
+    user_posts = Post.objects.filter(user=pk)
+    user_post_length = len(user_post)
+    
+    context = {
+        'user_object': user_object,
+        'user_profile': user_profile,
+        'user_post_length': user_post_length, 
+    }
+    
+    return render (request, 'profile.html', context)  
         
 @login_required(login_url='signin')
 def settings(request):
