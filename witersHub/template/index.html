@@ -78,7 +78,7 @@
                                     <p class="my-3 leading-6">Upload Books or Videos <br> please upload here ..
                                     </p>
                                     <div>
-                                        <input type="file" name="book_upload">
+                                        <input type="file" name="image_upload">
 
                                         <a href="#" class="button soft-warning small"> Choose file</a>
                                          <textarea class="button soft-warning small" name="caption" placeholder="caption"></textarea>
@@ -249,8 +249,8 @@
                             </div>
     
                             <div uk-lightbox>
-                                <a href="{{%post.image.url%}}">  
-                                    <img src="{{%post.image.url%}}" alt="">
+                                <a href="{{post.image.url}}">  
+                                    <img src="{{post.image.url}}" alt="">
                                 </a>
                             </div>
                             
